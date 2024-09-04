@@ -1,0 +1,44 @@
+.scienceHeading {
+    background: linear-gradient(90deg, #0077b6, #00b4d8);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .statsDashboard {
+    background-color: #f4f4f4; /* Subtle background */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap in smaller screens */
+    justify-content: space-around;
+    margin-top: -10px;
+    color: #005f8c;
+    font-size: 0.9rem;
+  }
+  
+  .statItem {
+    text-align: center;
+    margin: 5px 10px; /* Add spacing around each item */
+    flex: 1; /* Allow each item to take up equal space */
+    min-width: 100px; /* Ensure a minimum width */
+  }
+  
+  .statItem p {
+    margin: 5px 0; /* Ensure consistent spacing */
+  }
+  
+  .statItem a {
+    display: block; /* Ensure each link takes up the full width */
+    margin-top: 5px; /* Add some spacing between links */
+    color: #0077b6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .statItem a:hover {
+    color: #005f8c;
+  }
+  

@@ -1,0 +1,148 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  max-width: 100%;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card {
+  flex: 1;
+  max-width: 350px; /* Limit max width on larger screens */
+  height: auto;
+  margin: 0 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.image-container {
+  width: 100%;
+  height: 200px; /* Fixed height for the image container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselImage {
+  width: 90%;
+  height: 200px;
+  object-fit: contain;
+  object-position: center;
+  margin: 10px;
+}
+
+.card-content {
+  padding: 15px;
+  max-height: 250px; /* Set max height for the content section */
+  overflow-y: auto; /* Enable vertical scrolling only if content overflows */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #888 #e0e0e0; /* Custom scrollbar colors for Firefox */
+}
+
+.card-content h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+  margin: 0;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Button styling */
+.carousel-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0 0; /* Space between carousel and buttons */
+}
+
+.carousel-button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80px;
+  margin: 0 5px;
+}
+
+.carousel-button:hover {
+  background-color: #005f8c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    height: 500px; /* Set a fixed height for the card */
+    margin: 0 auto; /* Center the card on mobile */
+    width: 100%; /* Ensure only one card is visible at a time */
+    overflow: hidden; /* Ensure content stays within the card */
+  }
+
+  .card-content {
+    max-height: 250px; /* Set max height for the content section */
+    overflow-y: auto; /* Enable vertical scrolling only if content overflows */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding-right: 10px; /* Add some padding to avoid text being too close to the scrollbar */
+  }
+
+  .card-content::-webkit-scrollbar {
+    width: 8px; /* Set scrollbar width */
+  }
+
+  .card-content::-webkit-scrollbar-track {
+    background: #e0e0e0; /* Scrollbar track color */
+  }
+
+  .card-content::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar thumb color */
+    border-radius: 10px; /* Round the corners of the scrollbar thumb */
+  }
+
+  .carousel-wrapper {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) {
+  .carousel-wrapper {
+    flex-direction: row;
+    justify-content: space-between; /* Space the cards evenly */
+  }
+
+  .card {
+    width: 30%; /* Show three cards side by side */
+    margin: 0 10px; /* Small margin between cards */
+  }
+}

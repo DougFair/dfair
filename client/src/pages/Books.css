@@ -1,0 +1,44 @@
+.booksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    /* background-color: blue; */
+}
+
+/* .booksHeading {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    width: 100%; 
+    color: white; 
+    background: linear-gradient(180deg, #FFB347 33.33%, #FFC07A 33.33%, #D2691E 66.66%, #D2691E 66.66%, #D2691E 100%); 
+    font-size: 4rem; 
+    height: 150px; 
+    padding-left: 5%; 
+    margin-bottom: 20px; 
+    border-radius: 15px;
+} */
+
+.imageText {
+display: flex;
+align-items: center;
+flex-direction: column;
+text-align: justify;
+margin-left: 10px;
+}
+
+.booksImage {
+    width: 80%;
+    height: auto;
+    border: 1px solid orange;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.booksText {
+    width: 80%;
+    font-size: 1.1rem;
+    margin: 0 0 20px 0
+}

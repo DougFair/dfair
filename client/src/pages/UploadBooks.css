@@ -1,0 +1,34 @@
+.uploadDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadHeader {
+  margin-top: 60px;
+  color: #2ca3da;
+}
+
+.uploadInstructions {
+  margin: 5px 0;
+}
+
+.fileInput {
+  color: rgb(147, 202, 69);
+}
+
+.fileSubmitButton {
+  border: 1px solid #2ca3da;
+  width: 100px;
+  color: #2ca3da;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 2rem;
+}
+
+.fileSubmitButton:hover {
+  cursor: pointer;
+  background-color: #2ca3da;
+  color: white;
+}

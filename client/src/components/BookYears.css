@@ -1,0 +1,41 @@
+.bookYearsContainer {
+    width: 100%;
+    margin-bottom: 50px
+}
+
+.yearsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100% 
+}
+
+.bookYearsSubHeading {
+    font-weight: 500;
+    font-family: 'Raleway';
+    font-size: 1.3rem;
+    margin: 20px 0 5px 0 ;
+}
+
+.bookYearsListContainer {
+    display: flex;
+    flex-direction: row;
+    margin:0;
+    flex-wrap: wrap;
+}
+
+
+
+.year {
+    font-weight: 300;
+    font-family: 'Raleway';
+    font-size: 1rem;
+    margin: 5px 5px;
+
+}
+
+.year:hover {
+    color: grey;
+    font-weight: 700;
+    cursor: pointer;
+}

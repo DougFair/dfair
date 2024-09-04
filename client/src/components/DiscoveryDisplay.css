@@ -1,0 +1,108 @@
+
+
+.discoveryContainer {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: 'Abel';
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+
+/* .scienceHeading {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center; 
+  width: 100%; 
+  color: white; 
+  background: linear-gradient(180deg, #699e88 33.33%, #4d8977 33.33%, #155e6b 66.66%, #155e6b 66.66%, #155e6b 100%);  
+  font-size: 4rem; 
+  height: 150px; 
+  padding-left: 5%; 
+  margin-bottom: 20px; 
+  border-radius: 15px;
+} */
+
+.discoveryTextContainer {
+ display: flex;
+flex-direction: column;
+align-items: flex-start;
+width: 70%;
+padding:20px
+}
+
+.discoveryImage {
+width: 200px;
+height:200px;
+margin: 10px;
+object-fit: contain;
+}
+
+.discoveryTextYear {
+margin-bottom: 5px;
+font-size: 14px
+}
+
+.discoveryTextTitle {
+  margin:0;
+  font-size: 14px
+}
+
+.discoveryTextBlurb {
+  margin-top:5px;
+  font-family: 'Abel';
+  font-size: 12px;
+}
+
+.discoveryTextURL {
+    width:auto;
+    font-size: 14px
+}
+
+.slider-container {
+  /* width: 500px; */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgrey;
+}
+.slider {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.sliderContents {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 500px */
+}
+
+.sliderButtonsContainer {
+  margin-top: 10px;
+}
+
+.sliderButtonPlay {
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin: 0 5px;
+  color: green;
+  width: 50px;
+  border-radius: 5px;
+}
+
+.sliderButtonPause {
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin: 0 5px;
+  color: red;
+  width: 50px;
+  border-radius: 5px;
+}

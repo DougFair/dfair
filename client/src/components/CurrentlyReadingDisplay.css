@@ -1,0 +1,25 @@
+.currentReadingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+width: 100%    
+}
+.readingSubHeading {
+    font-weight: 500;
+font-family: 'Raleway';
+font-size: 1.3rem;
+margin: 20px 0 5px 0 ;
+}
+
+.currentBookTitleAuthor {
+    font-weight: 300;
+    font-family: 'Raleway';
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.currentReadingListContainer {
+    display: flex;
+    flex-direction: row;
+    margin:0
+}

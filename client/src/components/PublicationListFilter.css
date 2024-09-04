@@ -1,0 +1,8 @@
+dropdownsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+dropdown {
+    width: 100px
+}

@@ -1,0 +1,21 @@
+{
+  "name": "dfair",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "npm": "10.2.3",
+    "node": "18.17.0"
+  }, 
+  "scripts": {
+    "dev": "concurrently \"cd client && npm run dev\" \"cd backend && npm run start\"",
+    "start": "concurrently \"cd client && npm run start\" \"cd backend && npm run start\"",
+    "build": "npm install && cd client && npm install && npm run build && cd ../backend && npm install && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

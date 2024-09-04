@@ -1,0 +1,138 @@
+.createPublicationsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.publicationsDisplayContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.searchFormContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pubsearchLoader{
+    margin-top: 50px;
+}
+
+.pageHeading {
+    color: #2ca3da;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.searchPubsSubHeadings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.searchSubheadingAffiliation {
+    margin-top: 0;
+    color: grey;
+    width: 60%;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.searchSubheading {
+    margin-top: 0;
+    color: grey;
+}
+
+.searchSubheading2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: grey;
+}
+.searchSubheading3 {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.publicationSearchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f6f6f6;
+    padding: 40px;
+    border-radius: 10px;
+    width: auto;
+    margin: 0
+}
+
+
+.loaderLabel {
+    color:#2ca3da;
+}
+
+.createPubsSubmitButton {
+    margin-top: 10px;
+    width: 200px;
+    background-color: white;
+    color: #2ca3da
+}
+
+.formInput {
+    width: 375px;
+    border: 1px solid #2ca3da;
+    border-radius: 5px;
+    height: 1.5rem;
+    margin-bottom: 15px;
+    padding: 2px 6px
+}
+
+.formLabelInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.checkboxFormLabelInput {
+    display: flex;
+    margin-bottom: 10px;
+    /* align-items: center; */
+}
+
+.checkboxFormLabel {
+    margin: 0 0 0px 3px;
+    font-size: 0.9rem;
+}
+
+.tagInput {
+    margin: 5px 7px
+}
+
+.createPubsSubmitButton {
+    width: 200px;
+    height: 2rem;
+    border: 1px solid #2ca3da;
+    background-color: white;
+    color: #2ca3da;
+    border-radius: 5px;
+}   
+
+.createPubsSubmitButton:hover {
+    cursor:pointer;
+    background-color: #2ca3da;
+    color: white;
+    border-radius: 5px;
+}   
+
+.createPublicationFormLabel {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: grey;
+}

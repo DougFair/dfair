@@ -1,0 +1,11 @@
+#root {
+font-family: 'Quicksand','Montserrat','Abel', 'Open Sans', "Arial";
+}
+
+.appContainer {
+    margin: 0 10%
+}
+
+.sectionHeader {
+    font-size: 50px;
+}
