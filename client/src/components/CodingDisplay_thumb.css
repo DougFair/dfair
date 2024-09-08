@@ -1,0 +1,153 @@
+/* Container for overall layout */
+.codingDisplayContainer {
+    position: relative;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+/* Grid Layout for larger screens */
+.codeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Card Style */
+.codeCard {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease; /* Smooth transition */
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+}
+
+.codeCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+/* Enable flipping behavior for larger screens */
+.codeCard:hover .codeCardInner {
+    transform: rotateY(180deg); /* Flip on hover */
+}
+
+/* Expanded Card Styling */
+.expandedCard {
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+    max-width: 800px;
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Large Version of Card Content */
+.expandedCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.expandedCardImage {
+    width: 100%;
+    height: auto;
+}
+
+.expandedCardTitle {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.expandedCardBlurb {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.expandedCardURL {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #4682b4;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.expandedCardURL:hover {
+    background-color: #315f72;
+}
+
+/* Mobile Grid with Two Columns */
+@media (max-width: 768px) {
+    .codeGrid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns per row on mobile */
+        grid-gap: 15px; /* Add a gap between the cards */
+    }
+
+    .codeCard {
+        aspect-ratio: 1 / 1; /* Ensure square aspect ratio */
+        height: auto;
+        width: 100%;
+    }
+
+    .codeImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image fits within the square */
+    }
+
+    /* Disable flipping behavior on small screens */
+    .codeCard:hover .codeCardInner {
+        transform: none; /* No flip on hover for small screens */
+    }
+
+    .expandedCardTitle {
+        font-size: 18px; /* Adjusted for mobile */
+    }
+
+    .expandedCardBlurb {
+        font-size: 12px; /* Adjusted for mobile */
+    }
+
+    .expandedCardURL {
+        font-size: 14px; /* Adjusted for mobile */
+    }
+}
+
+/* Handle text shrinking properly */
+@media (max-width: 576px) {
+    .expandedCardTitle {
+        font-size: 16px; /* Shrink title on very small screens */
+    }
+
+    .expandedCardBlurb {
+        font-size: 10px; /* Shrink blurb on very small screens */
+    }
+
+    .expandedCardURL {
+        font-size: 12px; /* Shrink button text on very small screens */
+    }
+}
+
+/* Fix overlapping issue */
+.codingDisplayContainer {
+    margin-bottom: 30px; /* Add margin to prevent overlap with Books section */
+}

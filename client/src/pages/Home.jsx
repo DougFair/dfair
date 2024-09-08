@@ -3,6 +3,7 @@ import axios from 'axios'
 import DiscoveryDisplay from "../components/DiscoveryDisplay"
 import Carousel from "../components/Carousel"
 import CodingDisplay2 from "../components/CodingDisplay2"
+import CodingDisplay_thumb from "../components/CodingDisplay_thumb"
 import ScienceDisplay from '../components/ScienceDisplay'
 // import Books from "./Books"
 import Books2 from "./Books2"
@@ -28,7 +29,8 @@ const Home = () => {
       <ScienceDisplay user={user} />
   
       {/* <DiscoveryDisplay user={user}/> */}
-      <CodingDisplay2 />
+      <CodingDisplay_thumb />
+      {/* <CodingDisplay2 /> */}
       {/* <hr style={{width: "100%", border: "1px solid lightgrey"}} /> */}
 
       {/* <Books /> */}

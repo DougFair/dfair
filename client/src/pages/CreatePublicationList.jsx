@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GetPapersLocal } from "./GetPapersLocal";
 import axios from "axios";
-import {AuthContext} from "./AuthContext"
+// import {AuthContext} from "./AuthContext"
 import AddPublicationDisplay from "../components/AddPublicationDisplay";
-
+import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
 import "./CreatePublicationList.css";
 
@@ -21,9 +21,11 @@ const CreatePublicationList = () => {
   const [userPapers, setUserPapers] = useState([])
   
 
-  const user = useContext(AuthContext)
+  const user = useContext(UserContext)
+  console.log("user" + JSON.stringify(user.user._id))
 
   const claimPaper = (paperId) => {
+    console.log("clain" + paperId)
     const checkPaperPresent = userPapers?.findIndex(paper => paper.id === paperId)
 if (checkPaperPresent > -1) {
   alert("You already have this paper in your list")
@@ -123,7 +125,7 @@ if (checkPaperPresent > -1) {
     let publicationList = paperList.filter((paper) => paper.claimed);
     publicationList.forEach((pub, idx) => {
     axios
-      .patch("/api/addPublications", { pub, id:user.auth.userId })
+      .patch("/api/addPublications", { pub, id:user.user._id })
       .then(() => {
         if (idx === publicationList.length-1) {
           setLoading(false)
@@ -135,7 +137,7 @@ if (checkPaperPresent > -1) {
 
 useEffect(() => {
   if(!userPapers.length){
-    const id = user.auth.userId
+    const id = user.user._id
     axios.get(`/api/getPapers/${id}`).then(response =>  {
       let newCategories
       response.data.forEach(paper => {
@@ -148,13 +150,16 @@ useEffect(() => {
 
 useEffect(() => {
   if(userPapers.length){
-   let newCats = []   
+   let newCats = [] 
+   let idList = []  
     userPapers.forEach(paper => {
       if(paper.categories){
         newCats = [...newCats, ...paper.categories]
       }
+      idList.push(paper.id)
     })
     setAllCategories([...new Set(newCats)])
+    setPubIds(idList)
   }
 }, [userPapers]);
 
