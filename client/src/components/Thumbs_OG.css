@@ -1,0 +1,295 @@
+.codeDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  
+
+
+
+/* Grid Layout for larger screens */
+.codeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px;
+    width: 100%;
+    /* max-width: 1000px; */
+}
+
+.codeHeading {
+    background: linear-gradient(90deg, #1abc9c, #16a085); /* Green gradient background */
+    color: white; /* White text */
+    font-size: 2.5rem;
+    text-align: left;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for coding feel */
+    text-transform: lowercase; /* All lowercase for a techy look */
+    margin-bottom: 20px;
+    width: 100%
+  }
+  
+/* Card Style */
+.codeCard {
+    /* position: relative; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* background-color: #ffffff; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    transition: all 0.4s ease; 
+    /* overflow: hidden; */
+    /* cursor: pointer; */
+    /* aspect-ratio: 1 / 1;  */
+}
+
+.codeCard {
+    /* perspective: 1000px; */
+    width: 100%;
+    height: auto;
+    min-height: 200px; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px solid #dcdcdc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+  
+
+/* .codeCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+} */
+
+
+.codeCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+
+
+/* Enable flipping behavior for larger screens */
+.codeCard:hover .codeCardInner {
+    transform: rotateY(180deg); /* Flip on hover */
+}
+
+/* Expanded Card Styling */
+.expandedCard {
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+    max-width: 800px;
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.codeCardFront,
+.codeCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.codeCardFront {
+  background-color: #ffffff;
+
+}
+
+.codeCardBack {
+  background-color: #5f9ea0;
+  font-size: 1rem;
+  color: white;
+  transform: rotateY(180deg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+
+
+  .codeImage {
+    width: 100%; 
+    max-height: 130px; 
+    object-fit: contain; 
+    border-radius: 8px 8px 0 0;
+  }
+
+
+  .codeTitle {
+    font-size: 16px;
+    margin: 20px 0 10px 0;
+    color: #333;
+    text-align: center;
+  }
+  
+
+  .codeBlurb {
+    font-size: 0.7rem; 
+    color: white;
+    text-align: center;
+    padding: 20px 10px 0 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .codeURL {
+    font-size: 0.7rem
+  }
+
+
+/* Large Version of Card Content */
+.expandedCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.expandedCardImage {
+    width: 100%;
+    height: auto;
+}
+
+.expandedCardTitle {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.expandedCardBlurb {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.expandedCardURL {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #4682b4;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.expandedCardURL:hover {
+    background-color: #315f72;
+}
+
+/* Mobile Grid with Two Columns */
+@media (max-width: 768px) {
+    .codeGrid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        grid-gap: 15px; 
+    }
+
+    .codeCard {
+        /* max-height: 80px; */
+        width: 100%;    
+    }
+
+    .codeTitle {
+        font-size: 14px;
+      }
+
+
+    .codeImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+     /* Ensure the image fits within the square */
+    }
+
+    /* Disable flipping behavior on small screens */
+    .codeCard:hover .codeCardInner {
+        transform: none; /* No flip on hover for small screens */
+    }
+
+    .expandedCardTitle {
+        font-size: 18px; /* Adjusted for mobile */
+    }
+
+    .expandedCardBlurb {
+        font-size: 12px; /* Adjusted for mobile */
+    }
+
+    .expandedCardURL {
+        font-size: 14px; /* Adjusted for mobile */
+    }
+
+    .codeHeading {
+        text-align: center;
+            font-size: 2rem;
+            padding: 10px 10px 10px 20px;
+            width: 90%
+    
+        }
+    
+}
+
+/* Handle text shrinking properly */
+@media (max-width: 576px) {
+
+    .codeCard {
+        height: 0px;
+        width: 80%;
+      
+    }
+
+    .codeImage {
+        width: 150px;
+        height: 100px;
+        object-fit: cover;
+        aspect-ratio: 1/1; /* Ensure the image fits within the square */
+    }
+
+    .expandedCardTitle {
+        font-size: 16px; /* Shrink title on very small screens */
+    }
+
+    .expandedCardBlurb {
+        font-size: 10px; /* Shrink blurb on very small screens */
+    }
+
+    .expandedCardURL {
+        font-size: 12px; /* Shrink button text on very small screens */
+    }
+}
+
+/* Fix overlapping issue */
+.codingDisplayContainer {
+    margin-bottom: 30px; /* Add margin to prevent overlap with Books section */
+}

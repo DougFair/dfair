@@ -4,6 +4,7 @@ import DiscoveryDisplay from "../components/DiscoveryDisplay"
 import Carousel from "../components/Carousel"
 import CodingDisplay2 from "../components/CodingDisplay2"
 import CodingDisplay_thumb from "../components/CodingDisplay_thumb"
+import Thumbs_OG from "../components/Thumbs_OG"
 import ScienceDisplay from '../components/ScienceDisplay'
 // import Books from "./Books"
 import Books2 from "./Books2"
@@ -29,7 +30,8 @@ const Home = () => {
       <ScienceDisplay user={user} />
   
       {/* <DiscoveryDisplay user={user}/> */}
-      <CodingDisplay_thumb />
+      <Thumbs_OG />
+      {/* <CodingDisplay_thumb /> */}
       {/* <CodingDisplay2 /> */}
       {/* <hr style={{width: "100%", border: "1px solid lightgrey"}} /> */}
 
