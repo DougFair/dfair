@@ -221,6 +221,7 @@
         width: 100%;    
     }
 
+    
     .codeTitle {
         font-size: 14px;
       }
@@ -264,9 +265,22 @@
 @media (max-width: 576px) {
 
     .codeCard {
-        height: 0px;
-        width: 80%;
-      
+        width: 100%;
+        min-height: 145px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .codeCardFront{
+      position: absolute;
+      width: 100%;
+      height: 60%;
+    }
+    
+    .codeCardInner {
+height: 60%
     }
 
     .codeImage {

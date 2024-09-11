@@ -52,12 +52,15 @@ const Thumbs_OG = () => {
                                     <img src={item.photoURL} alt={item.codeTitle} className="codeImage" />
                                     <h4 className="codeTitle">{item.codeTitle}</h4>
                                 </div>
+                                {window.innerWidth <= 768 ? 
+                                null :
                                 <div className="codeCardBack">
                                     <p className="codeBlurb">{item.codeBlurb}</p>
                                     <a href={item.codeURL} className="codeURL" target="_blank" rel="noopener noreferrer">
                                         Visit Website
                                     </a>
                                 </div>
+                                }
                             </div>
                         </div>
                     )
