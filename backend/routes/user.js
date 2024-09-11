@@ -11,12 +11,10 @@ const upload2 = require("../codingImageUpload");
 // const sgMail = require("@sendgrid/mail");
 
 router.get("/api/getUser", (req, res) => {
-  console.log("lklakklhkjashdkjasd");
   User.find({})
     .select("-publications -password")
     .then((users) => {
       const user = users[0];
-      console.log("users" + users[0]);
       res.json(user);
     })
 
@@ -25,11 +23,9 @@ router.get("/api/getUser", (req, res) => {
 
 router.get("/api/getPapers/:id", (req, res) => {
   const userId = req.params.id;
-  console.log("lklakklhkjashdkjasd" + userId);
   User.find({ _id: userId })
     .then((user) => {
       const pubs = user[0].publications;
-      console.log("users" + JSON.stringify(pubs));
       res.json(pubs);
     })
     .catch((err) => console.log(err));
@@ -37,7 +33,6 @@ router.get("/api/getPapers/:id", (req, res) => {
 
 router.post("/api/login", function (req, res) {
   let { email, password } = req.body;
-  console.log("email", email, password);
   if (!email || !password) {
     return res.status(400).json({ msg: "All fields must be completed" });
   } else {
@@ -79,9 +74,8 @@ router.post("/api/tokenIsValid", function (req, res) {
 });
 
 router.patch("/api/addPublications", (req, res) => {
-  console.log("kjafhaksljdfhkjfd");
+  console.log("added");
   const { pub, id } = req.body;
-  console.log("pups" + JSON.stringify(req.body));
   User.updateOne({ _id: id }, { $push: { publications: pub } })
     .then(res.json("Publication added"))
     .catch((err) => console.log(err));
@@ -104,7 +98,6 @@ router.patch("/api/addDiscovery", (req, res) => {
 router.patch("/api/addCurrentBook", async (req, res) => {
   console.log("dfhkjfd");
   const { userId, book } = req.body;
-  console.log("addBook" + JSON.stringify(req.body));
   const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
@@ -117,7 +110,6 @@ router.patch("/api/addCurrentBook", async (req, res) => {
 
 router.patch("/api/addCurrentBook", async (req, res) => {
   const { userId, book } = req.body;
-  console.log("addBook" + JSON.stringify(req.body));
   const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
@@ -129,9 +121,7 @@ router.patch("/api/addCurrentBook", async (req, res) => {
 });
 
 router.patch("/api/addWebsite", async (req, res) => {
-  console.log("dfhkjfd");
   const { userId, website } = req.body;
-  console.log("addBook" + JSON.stringify(req.body));
   const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
@@ -144,7 +134,6 @@ router.patch("/api/addWebsite", async (req, res) => {
 
 router.patch("/api/transferCurrentBook", async (req, res) => {
   const { userId, book } = req.body;
-  console.log("transferBook" + JSON.stringify(req.body.book));
   const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
@@ -159,7 +148,6 @@ router.patch("/api/transferCurrentBook", async (req, res) => {
 
 router.post("/api/registerUser", function (req, res) {
   let { firstName, lastName, email, password } = req.body;
-  console.log("adasdas" + firstName, lastName, email, password);
   const secret = process.env.JWT_SECRET;
 
   if (!email || !password) {
