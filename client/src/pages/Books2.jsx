@@ -19,10 +19,10 @@ const Books = () => {
     };
 
     useEffect(() => {
-        if (user.firstName && !years.length) {
+        if (user && !years.length) {
             let bookYears = [];
             let booksOfThisYear = [];
-            user.booksReadList.forEach(book => {
+            user?.booksReadList?.forEach(book => {
                 if (!bookYears.includes(book.Year)) bookYears.push(book.Year);
                 if (book.Year === new Date().getFullYear()) booksOfThisYear.push(book);
             });
@@ -32,25 +32,43 @@ const Books = () => {
     }, [user, years]);
 
     useEffect(() => {
-        if (!user.firstName) {
-            axios.get('/api/getUser')
-                .then(response => {
-                    const newUser = response.data;
+                    if (user) {
                     let bookYears = [];
-                    let booksOfThisYear = [];
-                    response.data.booksReadList.forEach(book => {
+                     let booksOfThisYear = [];
+                    user?.booksReadList?.forEach(book => {
                         if (!bookYears.includes(book.Year)) bookYears.push(book.Year);
                         if (book.Year === new Date().getFullYear()) booksOfThisYear.push(book);
                     });
-                    setUser(newUser);
                     setYears(bookYears);
                     setBooksThisYear(booksOfThisYear);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
+                }
+    
+    
     }, [setUser]);
+
+    // useEffect(() => {
+    //     if (!user.firstName) {
+    //         axios.get('/api/getUser')
+    //             .then(response => {
+    //                 const newUser = response.data;
+    //                 let bookYears = [];
+    //                 let booksOfThisYear = [];
+    //                 response.data.booksReadList.forEach(book => {
+    //                     if (!bookYears.includes(book.Year)) bookYears.push(book.Year);
+    //                     if (book.Year === new Date().getFullYear()) booksOfThisYear.push(book);
+    //                 });
+    //                 setUser(newUser);
+    //                 setYears(bookYears);
+    //                 setBooksThisYear(booksOfThisYear);
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching data:', error);
+    //             });
+    //     }
+    // }, [setUser]);
+
+
+
 
     return (
         <div className="booksContainer">

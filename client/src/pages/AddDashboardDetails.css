@@ -1,0 +1,40 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: 100vh;
+    margin: 50px 0
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%
+}
+
+.formInput {
+    height: 1.5rem;
+    width: 60%
+}
+
+.formButton {
+    width: 150px;
+    cursor: pointer;
+    height: 1.5rem;
+    background-color: black;
+    color: white;
+    margin: 10px;
+    border-radius: 7px;
+
+}
+
+.resetFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%
+}

@@ -1,7 +1,30 @@
+import {useContext, useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
+import {UserContext} from "./UserContext";
+import axios from 'axios'
 
 const Admin = () => {
+
+
 const navigate = useNavigate()
+
+
+const { user, setUser } = useContext(UserContext);
+
+useEffect(() => {
+  if (!user.firstName) {
+      axios.get('/api/getUser')
+          .then(response => {
+              setUser(response.data);
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+          });
+  }
+}, [setUser]);
+
+
+
 const handleAddPapers = () => {
    navigate("/admin/add-publications")
 }
@@ -26,6 +49,11 @@ const handleWebsites = () => {
    navigate("/admin/add-websites")
 }
 
+const handleAddDashboardLinks = () => {
+   navigate("/admin/add-dashboard-details")
+}
+
+
     return(
         <div>
 <h1>Dssh</h1>
@@ -36,6 +64,7 @@ const handleWebsites = () => {
 <button onClick={handleWebsites}>Add a website</button>
 <button onClick={handleAddCurrentBooks}>Add to current reading list</button>
 <button onClick={handleEditCurrentBooks}>Edit current reading list</button>
+<button onClick={handleAddDashboardLinks}>Add Dashboard Links</button>
 </div>
     ) 
 

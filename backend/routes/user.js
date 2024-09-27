@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const upload = require("../imageUpload");
 const upload2 = require("../codingImageUpload");
+const axios = require("axios");
 // const Admin = require("../models/Admin.js");
 
 // const hashMiddleware = require("../middleware/createVerifyHash");
@@ -12,7 +13,7 @@ const upload2 = require("../codingImageUpload");
 
 router.get("/api/getUser", (req, res) => {
   User.find({})
-    .select("-publications -password")
+    .select("-password")
     .then((users) => {
       const user = users[0];
       res.json(user);
@@ -78,6 +79,14 @@ router.patch("/api/addPublications", (req, res) => {
   const { pub, id } = req.body;
   User.updateOne({ _id: id }, { $push: { publications: pub } })
     .then(res.json("Publication added"))
+    .catch((err) => console.log(err));
+});
+
+router.patch("/api/addDashboardLink", (req, res) => {
+  const { link, id } = req.body;
+  console.log("link" + JSON.stringify(req.body));
+  User.updateOne({ _id: id }, { $push: { dashboardLinks: link } })
+    .then(res.json("Link added"))
     .catch((err) => console.log(err));
 });
 
@@ -220,6 +229,24 @@ router.post(
     }
   }
 );
+
+router.post("/api/scholar", async (req, res) => {
+  // const scholarId = req.query.author_id;
+  // const apiKey = 'your_serpapi_key_here'; // Add your SerpAPI key here
+  const { scholarId, apiKey } = req.body;
+  console.log("ssdss" + scholarId + apiKey);
+  console.log("body" + JSON.stringify(req.body));
+  try {
+    const response = await axios.get(
+      `https://serpapi.com/search.json?api_key=${apiKey}&author_id=${scholarId}&engine=google_scholar_author`
+    );
+    console.log("response " + response.data);
+    res.json(response.data); // Send data back to the React app
+  } catch (error) {
+    console.log("error " + JSON.stringify(error));
+    res.status(500).send("Error occurred while fetching data from SerpAPI");
+  }
+});
 
 // router.post("/createUser", hashMiddleware, (req, res) => {
 //   let {

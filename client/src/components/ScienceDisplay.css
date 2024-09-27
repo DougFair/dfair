@@ -1,3 +1,10 @@
+.scienceDisplayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%
+}
+
 .scienceHeading {
     background: linear-gradient(90deg, #0077b6, #00b4d8); /* Cool blue gradient */
     color: white;
@@ -8,6 +15,7 @@
     box-shadow: 0 4px 8px rgba(0, 119, 182, 0.3); /* Subtle shadow */
     font-family: 'Roboto', sans-serif; /* Modern, clean font */
     margin-bottom: 20px;
+    width: 100%;
   }
 
   @media (max-width: 769px) {

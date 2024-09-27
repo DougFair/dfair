@@ -19,11 +19,11 @@ const Carousel = () => {
     }, []);
 
     const next = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % user.discoveries.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 3) % user.discoveries.length);
     };
 
     const prev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + user.discoveries.length) % user.discoveries.length);
+        setCurrentIndex((prevIndex) => (prevIndex - 3 + user.discoveries.length) % user.discoveries.length);
     };
 
     let carousel;

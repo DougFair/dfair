@@ -261,7 +261,7 @@
     
 }
 
-/* Handle text shrinking properly */
+
 @media (max-width: 576px) {
 
     .codeCard {

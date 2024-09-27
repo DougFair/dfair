@@ -20,6 +20,19 @@ import "./Home.css"
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
 
+  useEffect(() => {
+    if (!user.firstName) {
+        axios.get('/api/getUser')
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+}, [setUser]);
+
+
 
 
   return (

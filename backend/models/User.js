@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   coding: Array,
   password: String,
   discoveries: Array,
+  dashboardLinks: Array,
 });
 
 module.exports = mongoose.model("User", userSchema);

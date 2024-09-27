@@ -7,8 +7,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const clientDistPath = path.join(__dirname, "../client/dist");
-app.use(express.static(clientDistPath));
+// const clientDistPath = path.join(__dirname, "../client/dist");
+// app.use(express.static(clientDistPath));
 
 const userRoutes = require("./routes/user");
 
@@ -19,10 +19,17 @@ app.get("/api/data", (req, res) => {
   res.json({ message: "Hello from Express!!!!!!eeeeee" });
 });
 
-app.get("*", (req, res) => {
-  // Correct the path to point to 'client/dist/index.html'
-  res.sendFile(path.join(clientDistPath, "index.html"));
-});
+// app.get("*", (req, res) => {
+//   // Correct the path to point to 'client/dist/index.html'
+//   res.sendFile(path.join(clientDistPath, "index.html"));
+// });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 3001;
 

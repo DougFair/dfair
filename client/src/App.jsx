@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+
 import Root from "./pages/Root"
 import Home from "./pages/Home"
 import Admin from "./pages/Admin"
@@ -12,6 +12,7 @@ import CreateDiscoveryEntry from "./pages/CreateDiscoveryEntry"
 import CreateCodeEntry from "./pages/CreateCodeEntry"
 import EditCurrentReadingList from "./pages/EditCurrentReadingList"
 import AddCurrentReadingList from "./pages/AddCurrentReadingList"
+import AddDashboardDetails from "./pages/AddDashboardDetails"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { AuthProvider } from './pages/AuthContext';
 import { UserProvider } from './pages/UserContext';
@@ -45,7 +46,9 @@ children: [
   {path: "/admin/current-reading-edit",
   element: <EditCurrentReadingList />},
   {path: "/year-books",
-  element: <YearBooks />}
+  element: <YearBooks />},
+  {path: "/admin/add-dashboard-details",
+  element: <AddDashboardDetails />}
 ]},
   
 ])

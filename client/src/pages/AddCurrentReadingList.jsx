@@ -12,6 +12,7 @@ const AddCurrentReadingList = () => {
 
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContext);
+    
     const handleBookSubmit = (evt) => {
         evt.preventDefault()
         const book = {Title, Author, Fiction, Year: new Date().getFullYear()}
