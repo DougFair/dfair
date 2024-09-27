@@ -6,7 +6,8 @@ require("dotenv").config();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+var cron = require("node-cron");
+var ping = require("ping");
 // const clientDistPath = path.join(__dirname, "../client/dist");
 // app.use(express.static(clientDistPath));
 
@@ -32,6 +33,30 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+let host = "dfair.onrender.com";
+let cfg = { timeout: 10 };
+ping.sys.probe(
+  host,
+  function (isAlive) {
+    var msg = isAlive
+      ? "host " + host + " is alive"
+      : "host " + host + " is dead";
+    console.log("Message" + msg);
+  },
+  cfg
+);
+
+cron.schedule("* * * * *", () => {
+  console.log("task");
+  let host = "dfair.onrender.com";
+  ping.sys.probe(host, function (isAlive) {
+    var msg = isAlive
+      ? "host " + host + " is alive"
+      : "host " + host + " is dead";
+    console.log("Message" + msg);
+  });
+});
 
 const PORT = process.env.PORT || 3001;
 
