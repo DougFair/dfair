@@ -6,9 +6,10 @@ const Thumbs_OG = () => {
     const { user } = useContext(UserContext);
     const [flippedIndex, setFlippedIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
-
+console.log("fsdkajsdgklsdjfg")
     // Handle card click to flip or expand
     const handleCardClick = (index) => {
+        console.log("jsfkljgfhkdsfwjejfjfjfjfjfjk")
         if (window.innerWidth <= 768) {
             // Handle expansion for mobile view
             if (expandedIndex === index) {
