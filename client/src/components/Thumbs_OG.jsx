@@ -17,16 +17,8 @@ const Thumbs_OG = () => {
                 setExpandedIndex(index); // Expand the selected card
             }
         } else if ('ontouchstart' in window) {
-            // For touch-enabled devices like iPads:
-            // If the clicked card is already flipped, set to null to flip it back.
-            // Otherwise, set the new flipped index after flipping back any currently flipped card.
-            if (flippedIndex === index) {
-                setFlippedIndex(null); // Flip back the same card
-            } else {
-                // Flip back any card that might be currently flipped, then flip the new one
-                setFlippedIndex(null); // Reset first to ensure any flipped card flips back
-                setTimeout(() => setFlippedIndex(index), 300); // Flip the new card after a short delay
-            }
+            // For touch-enabled devices like iPads
+            setFlippedIndex(prevIndex => (prevIndex === index ? null : index));
         }
     };
 

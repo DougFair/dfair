@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../pages/UserContext"; // Assuming UserContext is here
-import "./Thumbs_OG.css";
+// import "./Thumbs_OG.css";
 
 const Thumbs_OG = () => {
     const { user } = useContext(UserContext); // Pull user context
