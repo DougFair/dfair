@@ -4,7 +4,7 @@ import "./Thumbs_OG.css";
 
 const Thumbs_OG = () => {
     const { user } = useContext(UserContext);
-    const [flippedIndices, setFlippedIndices] = useState({}); // Track flipped state for multiple cards
+    const [flippedIndex, setFlippedIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
 
     // Handle card click to flip or expand
@@ -12,16 +12,14 @@ const Thumbs_OG = () => {
         if (window.innerWidth <= 768) {
             // Handle expansion for mobile view
             if (expandedIndex === index) {
-                setExpandedIndex(null);
+                setExpandedIndex(null); // Collapse if the same card is clicked again
             } else {
-                setExpandedIndex(index);
+                setExpandedIndex(index); // Expand the selected card
             }
         } else if ('ontouchstart' in window) {
-            // Handle flipping for touch-enabled devices like iPads
-            setFlippedIndices((prevFlipped) => ({
-                ...prevFlipped,
-                [index]: !prevFlipped[index] // Toggle flip state for the touched card
-            }));
+            // For touch-enabled devices like iPads
+            // Always flip back if the same card is clicked or set the new flipped index
+            setFlippedIndex(flippedIndex === index ? null : index);
         }
     };
 
@@ -49,7 +47,7 @@ const Thumbs_OG = () => {
                 {user?.coding?.map((item, index) => (
                     <div
                         key={index}
-                        className={`codeCard ${flippedIndices[index] ? 'flipped' : ''}`}
+                        className={`codeCard ${flippedIndex === index ? 'flipped' : ''}`}
                         onClick={() => handleCardClick(index)}
                     >
                         <div className="codeCardInner">

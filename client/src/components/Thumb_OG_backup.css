@@ -1,4 +1,4 @@
-.codeDisplayContainer {
+/* .codeDisplayContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -306,4 +306,4 @@ height: 60%
 /* Fix overlapping issue */
 .codingDisplayContainer {
     margin-bottom: 30px; /* Add margin to prevent overlap with Books section */
-}
+} */
