@@ -86,9 +86,7 @@
     justify-content: flex-end;
   }
   
-  .codeCard.flipped .codeCardInner {
-    transform: rotateY(180deg);
-}
+
 
 /* Enable flipping behavior for larger screens */
 .codeCard:hover .codeCardInner {

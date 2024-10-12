@@ -1,18 +1,27 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../pages/UserContext"; // Assuming UserContext is here
+import { UserContext } from "../pages/UserContext";
 import "./Thumbs_OG.css";
 
 const Thumbs_OG = () => {
-    const { user } = useContext(UserContext); // Pull user context
-    const [expandedIndex, setExpandedIndex] = useState(null); // For handling expansion on mobile
+    const { user } = useContext(UserContext);
+    const [flippedIndex, setFlippedIndex] = useState(null);
+    const [expandedIndex, setExpandedIndex] = useState(null);
 
-    // Handle card click to expand or collapse (mobile only)
+    // Handle card click to flip or expand
     const handleCardClick = (index) => {
-        if (window.innerWidth <= 768) { // Only apply expansion behavior on small screens
+        if (window.innerWidth <= 768) {
+            // Handle expansion for mobile view
             if (expandedIndex === index) {
-                setExpandedIndex(null); // Collapse if clicked again
+                setExpandedIndex(null);
             } else {
-                setExpandedIndex(index); // Expand the selected card
+                setExpandedIndex(index);
+            }
+        } else if ('ontouchstart' in window) {
+            // Handle flipping for touch-enabled devices like iPads
+            if (flippedIndex === index) {
+                setFlippedIndex(null);
+            } else {
+                setFlippedIndex(index);
             }
         }
     };
@@ -20,9 +29,8 @@ const Thumbs_OG = () => {
     return (
         <div className="codingDisplayContainer">
             <h1 className="codeHeading">coding</h1>
-            {/* Conditionally render the expanded card for mobile */}
             {window.innerWidth <= 768 && expandedIndex !== null && (
-                <div className="expandedCard" onClick={() => setExpandedIndex(null)}> {/* Collapse on click */}
+                <div className="expandedCard" onClick={() => setExpandedIndex(null)}>
                     <div className="expandedCardContent">
                         <img
                             src={user.coding[expandedIndex].photoURL}
@@ -38,35 +46,30 @@ const Thumbs_OG = () => {
                 </div>
             )}
 
-            {/* Thumbnails in the grid */}
             <div className="codeGrid">
                 {user?.coding?.map((item, index) => (
-                    expandedIndex !== index && (  // Hide expanded card from grid
-                        <div
-                            key={index}
-                            className={expandedIndex === index ? 'expanded' : 'codeCard'}
-                            onClick={() => handleCardClick(index)} // Handle click for mobile
-                        >
-                            <div className="codeCardInner">
-                                <div className="codeCardFront">
-                                    <img src={item.photoURL} alt={item.codeTitle} className="codeImage" />
-                                    <h4 className="codeTitle">{item.codeTitle}</h4>
-                                </div>
-                   
-                                <div className="codeCardBack">
-                                    <p className="codeBlurb">{item.codeBlurb}</p>
-                                    <a href={item.codeURL} className="codeURL" target="_blank" rel="noopener noreferrer">
-                                        Visit Website
-                                    </a>
-                                </div>
-                              
+                    <div
+                        key={index}
+                        className={`codeCard ${flippedIndex === index ? 'flipped' : ''}`}
+                        onClick={() => handleCardClick(index)}
+                    >
+                        <div className="codeCardInner">
+                            <div className="codeCardFront">
+                                <img src={item.photoURL} alt={item.codeTitle} className="codeImage" />
+                                <h4 className="codeTitle">{item.codeTitle}</h4>
+                            </div>
+                            <div className="codeCardBack">
+                                <p className="codeBlurb">{item.codeBlurb}</p>
+                                <a href={item.codeURL} className="codeURL" target="_blank" rel="noopener noreferrer">
+                                    Visit Website
+                                </a>
                             </div>
                         </div>
-                    )
+                    </div>
                 ))}
             </div>
         </div>
     );
 };
 
-export default Thumbs_OG
+export default Thumbs_OG;

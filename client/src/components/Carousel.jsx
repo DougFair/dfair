@@ -7,23 +7,44 @@ const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+    // Handle resizing and update the state accordingly
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
 
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
     const next = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 3) % user.discoveries.length);
+        if (!user?.discoveries?.length) return;
+        const step = isMobile ? 1 : 3; // Show 1 card on mobile, 3 on larger screens
+        setCurrentIndex((prevIndex) => (prevIndex + step) % user.discoveries.length);
     };
 
     const prev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 3 + user.discoveries.length) % user.discoveries.length);
+        if (!user?.discoveries?.length) return;
+        const step = isMobile ? 1 : 3; // Same logic for previous button
+        setCurrentIndex((prevIndex) => (prevIndex - step + user.discoveries.length) % user.discoveries.length);
+    };
+
+    // Logic to determine if the "Next" button should be hidden
+    const isAtLastSlide = () => {
+        if (!user?.discoveries?.length) return false;
+        if (isMobile) {
+            return currentIndex === user.discoveries.length - 1;
+        } else {
+            return currentIndex + 3 >= user.discoveries.length;
+        }
+    };
+
+    // Logic to determine if the "Previous" button should be hidden
+    const isAtFirstSlide = () => {
+        return currentIndex === 0;
     };
 
     let carousel;
@@ -71,8 +92,12 @@ const Carousel = () => {
                 {carousel}
             </div>
             <div className="carousel-buttons-container">
-                <button className="carousel-button prev" onClick={prev}>Previous</button>
-                <button className="carousel-button next" onClick={next}>Next</button>
+                {!isAtFirstSlide() && (
+                    <button className="carousel-button prev" onClick={prev}>Previous</button>
+                )}
+                {!isAtLastSlide() && (
+                    <button className="carousel-button next" onClick={next}>Next</button>
+                )}
             </div>
         </div>
     );
