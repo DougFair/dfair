@@ -17,6 +17,7 @@ const Thumbs_OG = () => {
                 setExpandedIndex(index); // Expand the selected card
             }
         } else if ('ontouchstart' in window) {
+            console.log("Touch device detected, handling flip.")
             // For touch-enabled devices like iPads
             setFlippedIndex(prevIndex => (prevIndex === index ? null : index));
         }
