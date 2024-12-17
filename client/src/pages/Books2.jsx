@@ -90,7 +90,7 @@ const Books = () => {
                 {activeTab === 'yearlyLists' && <BookYears years={years} selectYear={handleSelectYear} books={user.booksReadList} heading={"Yearly Reading Lists"} />}
             </div>
 
-            {selectedYear && <YearBooks books={user.booksReadList} year={selectedYear} />}
+            {selectedYear && <YearBooks books={user.booksReadList} year={selectedYear} years={years}/>}
         </div>
     );
 };
