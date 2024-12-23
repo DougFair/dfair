@@ -1,12 +1,13 @@
+/* Container & Heading */
 .codingDisplayContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin-bottom: 50px;
-}
-
-.codeHeading {
+  }
+  
+  .codeHeading {
     background: linear-gradient(90deg, #1abc9c, #16a085);
     color: white;
     font-size: 2.5rem;
@@ -17,40 +18,48 @@
     margin-bottom: 20px;
     width: 100%;
     text-align: left;
-}
-
-.codeGrid {
+  }
+  
+  /* Grid Layout */
+  .codeGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);
     gap: 7px;
     width: 100%;
     justify-content: center;
     box-sizing: border-box;
-}
-
-/* Card with fixed width and height */
-.codeCard {
+  }
+  
+  /* Base Card Styles */
+  .codeCard {
     width: 300px;
-    height: 250px;
+    height: 250px; /* normal card size */
     background-color: #ffffff;
     border-radius: 8px;
     position: relative;
     cursor: pointer;
     overflow: hidden;
     border: none;
-    box-shadow: none; 
-}
-
-.codeCardInner {
+    box-shadow: none;
+    transition: height 0.4s ease; /* so if it expands, it's smooth */
+  }
+  
+  /* If card is expanded (mobile), let height auto-adjust */
+  .codeCard.expanded {
+    height: auto;
+  }
+  
+  /* For flipping logic, we still have codeCardInner and front/back faces */
+  .codeCardInner {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
-}
-
-.codeCardFront,
-.codeCardBack {
+  }
+  
+  .codeCardFront,
+  .codeCardBack {
     position: absolute;
     top: 0;
     left: 0;
@@ -62,52 +71,53 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-}
-
-.codeCardFront {
+  }
+  
+  .codeCardFront {
     background-color: #ffffff;
     border: none;
     box-shadow: none;
-}
-
-.codeCardBack {
+  }
+  
+  .codeCardBack {
     background-color: #5f9ea0;
     color: #ffffff;
     transform: rotateY(180deg);
     border: 2px solid #dcdcdc;
     box-sizing: border-box;
-}
-
-/* Flip on hover for desktop only */
-@media (min-width: 769px) {
-    .codeCard:hover .codeCardInner {
-        transform: rotateY(180deg);
-    }
-}
-
-.codeImage {
+  }
+  
+  /* Only flip if the card has a "flipped" class - 
+     typically triggered on smaller desktop windows or large windows by handleCardClick. */
+  .codeCard.flipped .codeCardInner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Image & Text (Front) */
+  .codeImage {
     width: 100%;
-    max-height: 180px; 
+    max-height: 180px;
     object-fit: contain;
     border-radius: 8px 8px 0 0;
     display: block;
-}
-
-.codeTitle {
+  }
+  
+  .codeTitle {
     font-size: 16px;
     margin: 10px 0;
     color: #333;
     text-align: center;
-}
-
-.codeBlurb {
-    font-size: 0.7rem; 
+  }
+  
+  /* Blurb & Link (Back) */
+  .codeBlurb {
+    font-size: 0.7rem;
     text-align: center;
     color: white;
     margin: 5px 0;
-}
-
-.codeURL {
+  }
+  
+  .codeURL {
     font-size: 0.7rem;
     color: white;
     text-decoration: none;
@@ -115,87 +125,66 @@
     padding: 5px 10px;
     border-radius: 4px;
     margin-top: 5px;
-}
-
-.codeURL:hover {
+  }
+  
+  .codeURL:hover {
     background: #315f72;
-}
-
-.expandedCard {
-    position: relative; 
-    background-color: #ffffff;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 15px;
-    width: 90%;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 1000; 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.expandedCardContent {
+  }
+  
+  /* Expanded (Mobile) Content */
+  .expandedMobileContent {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-}
-
-.expandedCardImage {
+    padding: 15px;
+  }
+  
+  .expandedCardImage {
     width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 8px;
-}
-
-.expandedCardTitle {
-    font-size: 20px;
-    color: #333;
+  }
+  
+  .expandedCardTitle {
+    font-size: 18px;
     margin-top: 10px;
     text-align: center;
-}
-
-.expandedCardBlurb {
-    font-size: 14px;
+    color: #333;
+  }
+  
+  .expandedCardBlurb {
+    font-size: 0.9rem;
     margin: 10px 0;
     text-align: center;
-}
-
-.expandedCardURL {
+  }
+  
+  .expandedCardURL {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
     background-color: #4682b4;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-}
-
-.expandedCardURL:hover {
+    font-size: 0.8rem;
+  }
+  
+  .expandedCardURL:hover {
     background-color: #315f72;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive Tweaks */
+  @media (max-width: 768px) {
+    /* We rely on expansion on mobile, so flipping won't happen. */
     .codeTitle {
-        font-size: 14px;
+      font-size: 14px;
     }
-    /* No hover flip on mobile */
-    .codeCard:hover .codeCardInner {
-        transform: none;
-    }
-
     .codeHeading {
-        text-align: center;
-        font-size: 2rem;
-        padding: 10px 20px;
-        width: 90%;
+      text-align: center;
+      font-size: 2rem;
+      padding: 10px 20px;
+      width: 90%;
     }
-}
-
-/* Remove any drastic changes at <576px. Keep the card 300px wide. */
-@media (max-width: 576px) {
-    /* Optional: if too large, users can scroll or cards can stack naturally. */
-    /* No special width/height changes here. */
-}
+  }
+  
