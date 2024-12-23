@@ -2,37 +2,31 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../pages/UserContext";
 import "./Thumbs_OG.css";
 
-// Helper function to detect mobile devices via user agent
-const isMobileDevice = () => {
-  return /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-};
-
 const Thumbs_OG = () => {
   const { user } = useContext(UserContext);
+
+  // Index of the card that is flipped (for desktop)
   const [flippedIndex, setFlippedIndex] = useState(null);
+
+  // Index of the card that is expanded inline (for mobile)
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handleCardClick = (index) => {
-    // 1) If it's an actual mobile device (phone/tablet in mobile mode):
-    if (isMobileDevice()) {
-      // Use inline expansion
+    // If screen width is 768px or below, toggle inline expansion
+    if (window.innerWidth <= 768) {
       if (expandedIndex === index) {
-        setExpandedIndex(null); // collapse
+        setExpandedIndex(null); // collapse it
       } else {
-        setExpandedIndex(index); // expand
+        setExpandedIndex(index); // expand it
       }
 
-    // 2) Else if the window width is small for a desktop/laptop
-    } else if (window.innerWidth <= 1024) {
-      // Flip the card
-      setFlippedIndex((prev) => (prev === index ? null : index));
-
     } else {
-      // 3) For larger desktops, do whatever you prefer (flip or expand)
-      // Let's assume we flip for demonstration
-      setFlippedIndex((prev) => (prev === index ? null : index));
+      // If screen width is above 768px, toggle flip
+      if (flippedIndex === index) {
+        setFlippedIndex(null); 
+      } else {
+        setFlippedIndex(index);
+      }
     }
   };
 
@@ -42,25 +36,23 @@ const Thumbs_OG = () => {
 
       <div className="codeGrid">
         {user?.coding?.map((item, index) => {
-          // Are we on a mobile device, and is this the expanded card?
-          const isExpandedOnMobile =
-            isMobileDevice() && expandedIndex === index;
+          // For small screens: check if this card is expanded
+          const isExpandedOnMobile = (window.innerWidth <= 768 && expandedIndex === index);
 
-          // Otherwise, if not mobile, do we flip?
-          const isFlipped =
-            !isMobileDevice() && flippedIndex === index;
+          // For large screens: check if this card is flipped
+          const isFlippedOnDesktop = (window.innerWidth > 768 && flippedIndex === index);
 
           return (
             <div
               key={index}
               className={`codeCard 
-                ${isFlipped ? "flipped" : ""} 
-                ${isExpandedOnMobile ? "expanded" : ""}`}
+                          ${isExpandedOnMobile ? "expanded" : ""} 
+                          ${isFlippedOnDesktop ? "flipped" : ""}`}
               onClick={() => handleCardClick(index)}
             >
               <div className="codeCardInner">
                 {isExpandedOnMobile ? (
-                  // Inline expanded content for mobile devices
+                  // Inline Expanded Content for mobile
                   <div className="expandedMobileContent">
                     <img
                       src={item.photoURL}

@@ -33,7 +33,7 @@
   /* Base Card Styles */
   .codeCard {
     width: 300px;
-    height: 250px; /* normal card size */
+    height: 250px; /* normal card size for non-expanded view */
     background-color: #ffffff;
     border-radius: 8px;
     position: relative;
@@ -41,15 +41,19 @@
     overflow: hidden;
     border: none;
     box-shadow: none;
-    transition: height 0.4s ease; /* so if it expands, it's smooth */
+    transition: height 0.4s ease; 
   }
   
-  /* If card is expanded (mobile), let height auto-adjust */
+  /* If card is expanded on mobile, let height auto-adjust */
   .codeCard.expanded {
     height: auto;
   }
   
-  /* For flipping logic, we still have codeCardInner and front/back faces */
+  /* For flipping logic (desktop), we have .flipped class that rotates the inner */
+  .codeCard.flipped .codeCardInner {
+    transform: rotateY(180deg);
+  }
+  
   .codeCardInner {
     position: relative;
     width: 100%;
@@ -87,16 +91,10 @@
     box-sizing: border-box;
   }
   
-  /* Only flip if the card has a "flipped" class - 
-     typically triggered on smaller desktop windows or large windows by handleCardClick. */
-  .codeCard.flipped .codeCardInner {
-    transform: rotateY(180deg);
-  }
-  
   /* Image & Text (Front) */
   .codeImage {
     width: 100%;
-    max-height: 180px;
+    max-height: 180px; 
     object-fit: contain;
     border-radius: 8px 8px 0 0;
     display: block;
@@ -111,7 +109,7 @@
   
   /* Blurb & Link (Back) */
   .codeBlurb {
-    font-size: 0.7rem;
+    font-size: 0.7rem; 
     text-align: center;
     color: white;
     margin: 5px 0;
@@ -176,10 +174,14 @@
   
   /* Responsive Tweaks */
   @media (max-width: 768px) {
-    /* We rely on expansion on mobile, so flipping won't happen. */
+    /* 
+      On small screens, we do not flip. 
+      The "expanded" class is used instead. 
+    */
     .codeTitle {
       font-size: 14px;
     }
+  
     .codeHeading {
       text-align: center;
       font-size: 2rem;
