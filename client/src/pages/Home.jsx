@@ -2,8 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import DiscoveryDisplay from "../components/DiscoveryDisplay"
 import Carousel from "../components/Carousel"
-import CodingDisplay2 from "../components/CodingDisplay2"
-import CodingDisplay_thumb from "../components/CodingDisplay_thumb"
+
 import Thumbs_OG from "../components/Thumbs_OG"
 import ScienceDisplay from '../components/ScienceDisplay'
 // import Books from "./Books"
