@@ -44,28 +44,39 @@ console.log("fsdkajsdgklsdjfg")
                 </div>
             )}
 
-            <div className="codeGrid">
-                {user?.coding?.map((item, index) => (
-                    <div
-                        key={index}
-                        className={`codeCard ${flippedIndex === index ? 'flipped' : ''}`}
-                        onClick={() => handleCardClick(index)}
-                    >
-                        <div className="codeCardInner">
-                            <div className="codeCardFront">
-                                <img src={item.photoURL} alt={item.codeTitle} className="codeImage" />
-                                <h4 className="codeTitle">{item.codeTitle}</h4>
-                            </div>
-                            <div className="codeCardBack">
-                                <p className="codeBlurb">{item.codeBlurb}</p>
-                                <a href={item.codeURL} className="codeURL" target="_blank" rel="noopener noreferrer">
-                                    Visit Website
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+<div className="codeGrid">
+  {user?.coding?.map((item, index) => {
+    // Remove the card from the grid only if:
+    // 1) We are on a small screen (<= 768px)
+    // 2) A card is actually expanded (expandedIndex is not null)
+    // 3) This particular card is the expanded one (expandedIndex === index)
+    if (window.innerWidth <= 768 && expandedIndex !== null && expandedIndex === index) {
+      return null;
+    }
+
+    return (
+      <div
+        key={index}
+        className={`codeCard ${flippedIndex === index ? 'flipped' : ''}`}
+        onClick={() => handleCardClick(index)}
+      >
+        <div className="codeCardInner">
+          <div className="codeCardFront">
+            <img src={item.photoURL} alt={item.codeTitle} className="codeImage" />
+            <h4 className="codeTitle">{item.codeTitle}</h4>
+          </div>
+          <div className="codeCardBack">
+            <p className="codeBlurb">{item.codeBlurb}</p>
+            <a href={item.codeURL} className="codeURL" target="_blank" rel="noopener noreferrer">
+              Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
         </div>
     );
 };

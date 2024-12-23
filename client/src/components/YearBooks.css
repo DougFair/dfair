@@ -16,7 +16,7 @@
 
   .yearBooksButton {
     width: auto;
-    height:2rem;
+    height:2.5rem;
     border-radius: 5px;
     border: none;
     /* border-color: white; */
@@ -25,11 +25,30 @@
   }
 
   .yearBooksButton:hover {
-    width: auto;
-    height:2rem;
-    border-radius: 5px;
+
     border: 1px solid orange;
     background-color: white;
     color:orange;
     cursor: pointer
   }
+
+  .bookYearsNamesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .yearListContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .yearBooksContainer p.yearName {
+    margin: 0px 0px 5px 4px;
+  }
+
+.yearName:hover {
+  color: grey;
+  font-weight: 500;
+  cursor: pointer;
+}

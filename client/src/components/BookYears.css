@@ -36,6 +36,6 @@
 
 .year:hover {
     color: grey;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
 }
