@@ -223,6 +223,7 @@
   }
   .paperWrapper {
     margin-top:8px;
+    width: 95%;
   }
   .categoriesContainer {
     height: 1.1rem;
