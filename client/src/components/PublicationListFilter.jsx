@@ -20,9 +20,9 @@ const PublicationListFilter = ({handleFilterTag, handleFilterCategory, allTags, 
 
     return(
        
-       <div>
-        <form>
-            <label>Filter by tags</label>
+       <div className='dropdownContainer'>
+        <form className='labelPlusDropdown'>
+            <label className="dropdownLabel">Tag filter</label>
                 <select value={tagValue} onChange={handleTagChange} className="dropdown">
                   <option value="" >No filter</option>
                     {allTags.map((tag) => {
@@ -34,9 +34,9 @@ const PublicationListFilter = ({handleFilterTag, handleFilterCategory, allTags, 
                     })
                 }
                 </select>
-                </form>
-                   <form>
-                   <label>Filter by categories</label>
+                </form >
+                   <form className='labelPlusDropdown'>
+                   <label className="dropdownLabel">Category filter</label>
                        <select value={categoryValue} onChange={handleCategoryChange} className="dropdown">
                          <option value="" >No filter</option>
                            {allCategories.map((category) => {

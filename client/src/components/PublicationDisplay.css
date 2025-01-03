@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 
 .paperlistItem {
@@ -10,8 +10,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   text-align: justify;
+  font-size: 0.8rem;
+}
+
+.paperListHeading {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.paperWrapper {
+  margin-top:10px;
+  width: 95%;
+
 }
 
 .paperDetailsSpan {
@@ -19,7 +31,7 @@
 }
 
 .title {
-  font-weight: 700;
+  font-weight: 650;
 }
 
 .journal {
@@ -50,12 +62,6 @@
 
 .displayModeHeading {
   margin-top: 0;
-}
-
-@media screen and (max-width: 400px) {
-  .displayModeHeading {
-    font-size: 1.1rem;
-  }
 }
 
 .filterContainer {
@@ -136,8 +142,22 @@
 
 .categoriesContainer {
   width: 100%;
-  height: 25px;
+  height: 1.2rem;
+  font-size: 0.85rem;
   background-color: lavender;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 4px;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+.tagContainer {
+  width: 100%;
+  height: 1.2rem;
+  font-size: 0.85rem;
+  background-color: rgb(212, 233, 197);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -187,4 +207,29 @@
   border-radius: 5px;
   padding: 3px;
   margin: 3px 3px 0 0;
+}
+
+@media screen and (max-width: 400px) {
+  .displayModeHeading {
+    font-size: 1.1rem;
+  }
+  .paperListHeading {
+    font-size: 1.75rem;
+    margin: 10px 0 5px 0;
+  }
+  
+  .paperlistItem {
+    font-size: 0.7rem;
+  }
+  .paperWrapper {
+    margin-top:8px;
+  }
+  .categoriesContainer {
+    height: 1.1rem;
+    font-size: 0.75rem;
+  }
+  .tagContainer {
+    height: 1.1rem;
+    font-size: 0.75rem;
+  }
 }

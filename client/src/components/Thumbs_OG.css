@@ -11,7 +11,7 @@
     background: linear-gradient(90deg, #1abc9c, #16a085);
     color: white;
     font-size: 2.5rem;
-    padding: 20px;
+    padding: 15px 20px;
     border-radius: 8px;
     font-family: 'Courier New', Courier, monospace;
     text-transform: lowercase;
@@ -33,7 +33,7 @@
   /* Base Card Styles */
   .codeCard {
     width: 300px;
-    height: 250px; /* normal card size for non-expanded view */
+    height: 250px; /* normal card size (non-expanded) */
     background-color: #ffffff;
     border-radius: 8px;
     position: relative;
@@ -41,19 +41,15 @@
     overflow: hidden;
     border: none;
     box-shadow: none;
-    transition: height 0.4s ease; 
+    transition: height 0.4s ease; /* for expanded height on mobile */
   }
   
-  /* If card is expanded on mobile, let height auto-adjust */
+  /* If card is expanded (mobile), let height auto-adjust */
   .codeCard.expanded {
     height: auto;
   }
   
-  /* For flipping logic (desktop), we have .flipped class that rotates the inner */
-  .codeCard.flipped .codeCardInner {
-    transform: rotateY(180deg);
-  }
-  
+  /* The 'inner' container for front/back faces */
   .codeCardInner {
     position: relative;
     width: 100%;
@@ -62,6 +58,7 @@
     transition: transform 0.6s ease;
   }
   
+  /* Front & Back faces */
   .codeCardFront,
   .codeCardBack {
     position: absolute;
@@ -91,10 +88,17 @@
     box-sizing: border-box;
   }
   
-  /* Image & Text (Front) */
+  /* HOVER FLIP for larger screens */
+  @media (min-width: 769px) {
+    .codeCard:hover .codeCardInner {
+      transform: rotateY(180deg);
+    }
+  }
+  
+  /* Image & Title (Front) */
   .codeImage {
     width: 100%;
-    max-height: 180px; 
+    max-height: 180px;
     object-fit: contain;
     border-radius: 8px 8px 0 0;
     display: block;
@@ -107,9 +111,9 @@
     text-align: center;
   }
   
-  /* Blurb & Link (Back) */
+  /* Text & Link (Back) */
   .codeBlurb {
-    font-size: 0.7rem; 
+    font-size: 0.7rem;
     text-align: center;
     color: white;
     margin: 5px 0;
@@ -129,7 +133,7 @@
     background: #315f72;
   }
   
-  /* Expanded (Mobile) Content */
+  /* Inline Expanded Content on Mobile */
   .expandedMobileContent {
     display: flex;
     flex-direction: column;
@@ -174,14 +178,10 @@
   
   /* Responsive Tweaks */
   @media (max-width: 768px) {
-    /* 
-      On small screens, we do not flip. 
-      The "expanded" class is used instead. 
-    */
+    /* On small screens, we do no flipping; we rely on 'expanded' for inline expansion */
     .codeTitle {
       font-size: 14px;
     }
-  
     .codeHeading {
       text-align: center;
       font-size: 2rem;

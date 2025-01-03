@@ -1,152 +1,157 @@
 import { useState, useEffect, useContext } from "react";
-import {UserContext} from "../pages//UserContext";
+import { UserContext } from "../pages/UserContext";
 import axios from "axios";
-import "./PaperList.css";
-import PublicationListFilter from "./PublicationListFilter"
+import "./PublicationDisplay.css";
+import PublicationListFilter from "./PublicationListFilter";
 
 const PublicationList = () => { 
-    const [userPapers, setUserPapers] = useState([])
-    const [selectedPapers, setSelectedPapers] = useState([])
-    const [allTags, setAllTags]= useState([])
-    const [allCategories, setAllCategories] = useState([])
-    const { user, setUser } = useContext(UserContext);
+  const [userPapers, setUserPapers] = useState([]);
+  const [selectedPapers, setSelectedPapers] = useState([]);
+  const [allTags, setAllTags] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
+  const { user } = useContext(UserContext);
 
-
-
-
-const handleFilterTag = (selectedTag) => {
- 
-  const filteredPapers = userPapers.filter(paper => paper.tags.some(tag => tag.tagName === selectedTag))
-
-  setSelectedPapers(filteredPapers)
+  const handleFilterTag = (selectedTag) => {
+let papersToFilter = userPapers
+if (selectedPapers.length) {
+  papersToFilter = selectedPapers
 }
 
-const handleFilterCategory = (category) => {
-  console.log("categorjorjro" + category)
-  const filteredPapers = userPapers.filter(paper => paper?.categories?.some(cat => cat === category))
-  console.log("filterd" + filteredPapers)
-  setSelectedPapers(filteredPapers)
+    const filteredPapers = papersToFilter.filter(paper =>
+      paper.tags?.some(tag => tag.tagName === selectedTag)
+    );
+    setSelectedPapers(filteredPapers);
+  };
+
+  const handleFilterCategory = (category) => {
+    let papersToFilter = userPapers
+if (selectedPapers.length) {
+  papersToFilter = selectedPapers
 }
 
-useEffect(() => {
-    if(!userPapers?.length){
-      const id = user._id
-  
-      axios.get(`/api/getPapers/${id}`).then(response =>  {
-      
-        response.data.forEach(paper => {
-          setUserPapers(response.data) 
-        })
-      })
-    }
-  }, []);
+    const filteredPapers = papersToFilter.filter(paper =>
+      paper?.categories?.some(cat => cat === category)
+    );
+    setSelectedPapers(filteredPapers);
+  };
 
   useEffect(() => {
-    if(userPapers?.length){
-     let newCats = [] 
-     let newTags = []  
+    if (!userPapers?.length) {
+      const id = user._id;
+      axios.get(`/api/getPapers/${id}`).then(response => {
+        setUserPapers(response.data);
+      });
+    }
+  }, [userPapers?.length, user._id]);
+
+  useEffect(() => {
+    if (userPapers?.length) {
+      let newCats = [];
+      let newTags = [];
+
       userPapers.forEach(paper => {
-        if(paper?.tags?.length){     
-          newTags = [...newTags, ...paper.tags]
-          let jsonObj = newTags.map(JSON.stringify)
-          let uniqueSet =  new Set(jsonObj)
-          let uniqueArray=Array.from(uniqueSet).map(JSON.parse)
-          newTags = uniqueArray
+        // Collect all tags
+        if (paper?.tags?.length) {
+          newTags = [...newTags, ...paper.tags];
+          // remove duplicates
+          const jsonObj = newTags.map(JSON.stringify);
+          const uniqueSet = new Set(jsonObj);
+          const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+          newTags = uniqueArray;
         }
-        if(paper?.categories?.length){   
-          newCats = [...newCats, ...paper.categories]
+        // Collect all categories
+        if (paper?.categories?.length) {
+          newCats = [...newCats, ...paper.categories];
         }
-      })
-      setAllTags(newTags)
-      setAllCategories([...new Set(newCats)])
+      });
+      setAllTags(newTags);
+      setAllCategories([...new Set(newCats)]);
     }
   }, [userPapers]);
-
-
 
   let listDisplay = "";
 
   if (userPapers?.length) {
-let papersToDisplay
-    if (selectedPapers.length) {
-      papersToDisplay = selectedPapers
-    } else {
-      papersToDisplay = userPapers
-    }
+    // Choose which papers to display
+    const papersToDisplay = selectedPapers.length
+      ? selectedPapers
+      : userPapers;
 
-
+    // Map over each paper to build the JSX
     listDisplay = papersToDisplay.map((data) => {
-      let volume = "";
-      if (data.volume === "") {
-        volume = " volume/pages not yet available";
-      } else {
-        volume = `${data.volume}: `;
-      }
+      let volume = data.volume
+        ? `${data.volume}: `
+        : " volume/pages not yet available";
 
       return (
-        <div className="paperlistItem" key={data.id}>
-          <span className="paperDetailsSpan">
-            <span className="title">{`${data.title} `}</span>
-            <span className="authors">{`${data.authors}, `}</span>
-            <span className="year">{`(${data.pubdate}), `}</span>
-            <span className="journal">{`${data.journal},  `}</span>
-            <span className="volume">{`${volume} `}</span>
-            <span className="pages">{`${data.pages},  `}</span>
-            <span className="doi">{`${data.doi}, `}</span>
-            <span className="pmid">
-              PMID:{" "}
-              <a
-                href={`https://www.ncbi.nlm.nih.gov/pubmed/${data.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.id}.
-              </a>
+        <div className="paperWrapper" key={data.id}>
+          {/* Paper Info */}
+          <div className="paperlistItem">
+            <span className="paperDetailsSpan">
+              <span className="title">{`${data.title} `}</span>
+              <span className="authors">{`${data.authors}, `}</span>
+              <span className="pubdate">{`(${data.pubdate}), `}</span>
+              <span className="journal">{`${data.journal},  `}</span>
+              <span className="volume">{`${volume} `}</span>
+              <span className="pages">{`${data.pages},  `}</span>
+              <span className="doi">{`${data.doi}, `}</span>
+              <span className="pmid">
+                PMID:{" "}
+                <a
+                  href={`https://www.ncbi.nlm.nih.gov/pubmed/${data.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {data.id}.
+                </a>
+              </span>
             </span>
-          </span>
-          <div className="categoriesContainer">
+          </div>
 
-          <span className="tagSpan">
-          {data?.tags?.length ?
-          data.tags.map(tag => <span className={tag.style} key={tag.tagName}>{tag.tagName}</span>
-            ) : null}
-            </span>
+          {/* Tags */}
+          {data?.tags?.length ? (
+            <div className="tagContainer">
+              <div className="categoryList">
+                <p>Tags:</p>
+                {data.tags.map((tag) => (
+                  <p className={tag.style} key={tag.tagName}>
+                    {tag.tagName}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
+          {/* Categories */}
+          {data?.categories?.length ? (
+            <div className="categoriesContainer">
+              <div className="categoryList">
+                <p>Categories:</p>
+                {data.categories.map((cat) => (
+                  <p key={cat} className="categoryItem">
+                    {cat}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      );
+    });
+  }
 
-{/* 
-       {data?.tags?.length?       
-       <div className="categoryList">
-         <p>Categories:</p>
-        {data.categories?.map((cat) => <p key={data.id}className="categoryItem">{cat}</p>)}
-         </div>
-      : null
-      } */}
+  return (
+    <div className="paperListContainer">
+      <h1 className="paperListHeading">Publications</h1>
+      <PublicationListFilter
+        allTags={allTags}
+        allCategories={allCategories}
+        handleFilterTag={handleFilterTag}
+        handleFilterCategory={handleFilterCategory}
+      />
+      {listDisplay}
     </div>
-      <div className="categoriesContainer">
-       {data?.categories?.length?       
-       <div className="categoryList">
-         <p>Categories:</p>
-        {data.categories?.map((cat) => <p key={data.id}className="categoryItem">{cat}</p>)}
-         </div>
-      : null
-      }
-    </div>
-</div>
-    );
-  });
-}
-
-
-  return <div className="paperListContainer">
-    <h1>Publications</h1>
-   <PublicationListFilter
-    allTags={allTags}
-    allCategories={allCategories} 
-    handleFilterTag={handleFilterTag} 
-    handleFilterCategory={handleFilterCategory}
-    />
-    {listDisplay}
-    </div>;
+  );
 };
 
 export default PublicationList;

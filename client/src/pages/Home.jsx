@@ -37,17 +37,8 @@ const Home = () => {
   return (
     <div className='appContainer'>
       <Navbar />
-
-      {/* <h1>{`${user.firstName}`}</h1> */}
       <ScienceDisplay user={user} />
-  
-      {/* <DiscoveryDisplay user={user}/> */}
       <Thumbs_OG />
-      {/* <CodingDisplay_thumb /> */}
-      {/* <CodingDisplay2 /> */}
-      {/* <hr style={{width: "100%", border: "1px solid lightgrey"}} /> */}
-
-      {/* <Books /> */}
       <Books2 />
     </div>
   );

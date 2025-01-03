@@ -5,29 +5,20 @@ import "./Thumbs_OG.css";
 const Thumbs_OG = () => {
   const { user } = useContext(UserContext);
 
-  // Index of the card that is flipped (for desktop)
-  const [flippedIndex, setFlippedIndex] = useState(null);
-
-  // Index of the card that is expanded inline (for mobile)
+  // For mobile inline expansions
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handleCardClick = (index) => {
-    // If screen width is 768px or below, toggle inline expansion
+    // On small screens, toggle inline expansion
     if (window.innerWidth <= 768) {
       if (expandedIndex === index) {
         setExpandedIndex(null); // collapse it
       } else {
-        setExpandedIndex(index); // expand it
-      }
-
-    } else {
-      // If screen width is above 768px, toggle flip
-      if (flippedIndex === index) {
-        setFlippedIndex(null); 
-      } else {
-        setFlippedIndex(index);
+        setExpandedIndex(index); // expand it in place
       }
     }
+    // On larger screens, do nothing on click 
+    // (Hover-based flip is handled purely by CSS).
   };
 
   return (
@@ -36,23 +27,18 @@ const Thumbs_OG = () => {
 
       <div className="codeGrid">
         {user?.coding?.map((item, index) => {
-          // For small screens: check if this card is expanded
+          // If the screen is <= 768px, check if we should show the expanded content
           const isExpandedOnMobile = (window.innerWidth <= 768 && expandedIndex === index);
-
-          // For large screens: check if this card is flipped
-          const isFlippedOnDesktop = (window.innerWidth > 768 && flippedIndex === index);
 
           return (
             <div
               key={index}
-              className={`codeCard 
-                          ${isExpandedOnMobile ? "expanded" : ""} 
-                          ${isFlippedOnDesktop ? "flipped" : ""}`}
+              className={`codeCard ${isExpandedOnMobile ? "expanded" : ""}`}
               onClick={() => handleCardClick(index)}
             >
               <div className="codeCardInner">
                 {isExpandedOnMobile ? (
-                  // Inline Expanded Content for mobile
+                  // Inline Expanded Content on Mobile
                   <div className="expandedMobileContent">
                     <img
                       src={item.photoURL}
@@ -71,7 +57,7 @@ const Thumbs_OG = () => {
                     </a>
                   </div>
                 ) : (
-                  // Default front/back faces
+                  // Default Front/Back faces for desktop or non-expanded mobile
                   <>
                     <div className="codeCardFront">
                       <img
