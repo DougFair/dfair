@@ -227,9 +227,11 @@
   .categoriesContainer {
     height: 1.1rem;
     font-size: 0.75rem;
+    width: 95%
   }
   .tagContainer {
     height: 1.1rem;
     font-size: 0.75rem;
+    width: 95%;
   }
 }
